@@ -11,6 +11,8 @@ bell.BELL_SAVE_FILE = minetest.get_worldpath().."/bell_positions.data";
 
 local bell_positions = {};
 
+local S = minetest.get_translator("bell")
+
 
 bell.save_bell_positions = function( player )
   
@@ -19,7 +21,7 @@ bell.save_bell_positions = function( player )
    local file, err = io.open( bell.BELL_SAVE_FILE, "wb");
    if (err ~= nil) then
       if( player ) then
-         minetest.chat_send_player(player:get_player_name(), "Error: Could not save bell data");
+         minetest.chat_send_player(player:get_player_name(), S("Error: Could not save bell data"));
       end
       return
    end
@@ -104,7 +106,7 @@ bell.restore_bell_data();
 
 
 minetest.register_node("bell:bell", {
-    description = "bell",
+    description = S("bell"),
     node_placement_prediction = "",
 	tiles = {"bell_bell.png"},
 	paramtype = "light",
@@ -116,12 +118,12 @@ minetest.register_node("bell:bell", {
     on_punch = function (pos,node,puncher)
         minetest.sound_play( "bell_bell",
            { pos = pos, gain = 1.5, max_hear_distance = 300,});
-	minetest.chat_send_all(puncher:get_player_name().." has rung the bell!")
+	minetest.chat_send_all(puncher:get_player_name()..S(" has rung the bell!"))
 	end,
 
     after_place_node = function(pos, placer)
        if( placer ~= nil ) then
-          minetest.chat_send_all(placer:get_player_name().." has placed a new bell at "..tostring( minetest.pos_to_string( pos )));
+          minetest.chat_send_all(placer:get_player_name()..S(" has placed a new bell at ")..tostring( minetest.pos_to_string( pos )));
        end
        -- remember that there is a bell at that position
        table.insert( bell_positions, pos );
@@ -130,7 +132,7 @@ minetest.register_node("bell:bell", {
 
     after_dig_node = function(pos, oldnode, oldmetadata, digger)
        if( digger ~= nil ) then
-          minetest.chat_send_all(digger:get_player_name().." has removed the bell at "..tostring( minetest.pos_to_string( pos )));
+          minetest.chat_send_all(digger:get_player_name()..S(" has removed the bell at ")..tostring( minetest.pos_to_string( pos )));
        end
 
        local found = 0;
@@ -152,7 +154,7 @@ minetest.register_node("bell:bell", {
 
 
 minetest.register_node("bell:bell_small", {
-    description = "small bell",
+    description = S("small bell"),
     node_placement_prediction = "",
 	tiles = {"bell_bell.png"},
 	paramtype = "light",

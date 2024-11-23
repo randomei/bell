@@ -1,0 +1,7 @@
+# textdomain: bell
+Error: Could not save bell data=
+bell=
+ has rung the bell!=
+ has placed a new bell at =
+ has removed the bell at =
+small bell=

@@ -1,0 +1,7 @@
+# textdomain: bell
+Error: Could not save bell data=Ошибка: не возможно сохранить данные колокола
+bell=Колокол
+ has rung the bell!= позвонил в колокол!
+ has placed a new bell at = установил новый колокол в 
+ has removed the bell at = удалил колокол в 
+small bell=Малый колокол
